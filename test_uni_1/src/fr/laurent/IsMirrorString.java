@@ -2,7 +2,7 @@ package fr.laurent;
 
 import java.util.Objects;
 
-public class isMirrorString {
+public class IsMirrorString {
     public static String check(String userInput, String userLanguage){
         String revertedInput = new StringBuilder(userInput).reverse().toString();
 
