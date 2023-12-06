@@ -1,3 +1,7 @@
+import fr.laurent.Expressions;
+import fr.laurent.Time;
+import fr.laurent.isMirrorString;
+
 import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Scanner;
@@ -7,25 +11,19 @@ public class Main {
     public static void main(String[] args) {
 
         String userLanguage = System.getProperty("user.language");
-        LocalTime now = java.time.LocalTime.now();
         LocalTime noon = LocalTime.parse("12:00:00");
-        int timeDiff = now.compareTo(noon);
 
-        boolean isMorning = false;
-
-        if (timeDiff < 0) {
-            isMorning = true;
-
+        if (Time.whenAreWe(noon)) {
             if (Objects.equals(userLanguage, "fr")){
-                System.out.print("Bonjour et bienvenue! \n");
+                System.out.print(Expressions.Bonjour);
             } else {
-                System.out.print("Good morning and welcome! \n");
+                System.out.print(Expressions.GoodMorning);
             }
         } else {
             if (Objects.equals(userLanguage, "fr")){
-                System.out.print("Bonsoir et bienvenue! \n");
+                System.out.print(Expressions.Bonsoir);
             } else {
-                System.out.print("Good afternoon and welcome! \n");
+                System.out.print(Expressions.GoodAfternoon);
             }
         }
 
@@ -34,29 +32,17 @@ public class Main {
 
         while (Objects.equals(userInput, "")) {
             userInput = in.nextLine();
-
         }
 
-        StringBuilder input1 = new StringBuilder();
-        input1.append(userInput);
-        input1.reverse();
+        String output = isMirrorString.check(userInput, userLanguage);
 
-        if (input1.toString().equals(userInput)) {
+        System.out.print(output.concat("\n"));
 
-            if (Objects.equals(userLanguage, "fr")) {
-                System.out.print("Bien dit! \n");
-            } else {
-                System.out.print("Well said! \n");
-            }
-        }
-
-        System.out.print(userInput.concat("\n"));
-
-        if (isMorning) {
-            System.out.print("Bonne fin de matinée.");
+        if (Time.whenAreWe(noon)) {
+            System.out.print(Expressions.FinMatin);
         } else {
-            System.out.print("Bonne fin de journée.");
+            System.out.print(Expressions.FinAprem);
         }
-
     }
 }
+
