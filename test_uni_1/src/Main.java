@@ -10,7 +10,6 @@ public class Main {
         LocalTime now = java.time.LocalTime.now();
         LocalTime noon = LocalTime.parse("12:00:00");
         int timeDiff = now.compareTo(noon);
-
         boolean isMorning = false;
 
         if (timeDiff < 0) {
