@@ -1,16 +1,12 @@
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.Scanner;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Entrée with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
 
+        String userLanguage = System.getProperty("user.language");
         LocalTime now = java.time.LocalTime.now();
         LocalTime noon = LocalTime.parse("12:00:00");
         int timeDiff = now.compareTo(noon);
@@ -19,9 +15,18 @@ public class Main {
 
         if (timeDiff < 0) {
             isMorning = true;
-            System.out.print("Good morning and welcome! \n");
+
+            if (Objects.equals(userLanguage, "fr")){
+                System.out.print("Bonjour et bienvenue! \n");
+            } else {
+                System.out.print("Good morning and welcome! \n");
+            }
         } else {
-            System.out.print("Good afternoon and welcome! \n");
+            if (Objects.equals(userLanguage, "fr")){
+                System.out.print("Bonsoir et bienvenue! \n");
+            } else {
+                System.out.print("Good afternoon and welcome! \n");
+            }
         }
 
         Scanner in = new Scanner(System.in);
@@ -38,7 +43,7 @@ public class Main {
 
         if (input1.toString().equals(userInput)) {
 
-            if (Objects.equals(System.getProperty("user.language"), "fr")) {
+            if (Objects.equals(userLanguage, "fr")) {
                 System.out.print("Bien dit! \n");
             } else {
                 System.out.print("Well said! \n");
